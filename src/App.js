@@ -3,6 +3,7 @@ import './styles/App.css';
 import PostList from './components/PostList';
 import PostForm from './components/PostForm';
 import PostFilter from './components/PostFilter';
+import MyModal from './components/UI/MyModal/MyModal';
 
 
 function App() {
@@ -36,19 +37,15 @@ function App() {
 
     return (
         <div className = 'App'>
-            <PostForm create = { createPost } />
+            <MyModal>
+                <PostForm create = { createPost } />
+            </MyModal>
             <hr style = { { margin: ' 15px 0' } } />
             <PostFilter
-                filter={filter}
-                setFilter={setFilter} />
-            { sortedAndSearchedPosts.length
-                ?
-                <PostList remove = { removePost } posts = { sortedAndSearchedPosts } title = 'List of JS Posts' />
-                :
-                <h1
-                    style = { { textAlign: 'center' } }>No posts found
-                </h1>
-            }
+                filter = { filter }
+                setFilter = { setFilter } />
+            <PostList remove = { removePost } posts = { sortedAndSearchedPosts } title = 'List of JS Posts' />
+
         </div>
     );
 }
